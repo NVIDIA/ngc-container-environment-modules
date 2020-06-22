@@ -75,8 +75,8 @@ Download a [GROMACS benchmark](http://ftp.gromacs.org/pub/benchmarks/)
 to run this example.
 
 ```
-$ module load gromacs
-$ gmx mdrun -ntmpi 1 -ntomp 40 -v pin on -nb gpu --pme gpu --resetstep 12000 -nsteps 20000 -nstlist 400 -noconfout -s topol.tpr
+$ module load gromacs/2020.2
+$ gmx mdrun -ntmpi 1 -ntomp 40 -v -pin on -nb gpu --pme gpu --resetstep 12000 -nsteps 20000 -nstlist 400 -noconfout -s topol.tpr
 ```
 
 ### Interactive
@@ -102,6 +102,6 @@ fluid](https://lammps.sandia.gov/inputs/in.lj.txt) dataset to run this
 example.
 
 ```
-$ module load lammps
-$ mpirun -n 2 lmp -in in.lj.txt -var x 8 -var y 8 -var z 8 -k on g 2 -sf kk -pk kokkos gpu/direct on neigh full comm device binsize 2.8
+$ module load lammps/15Jun2020
+$ mpirun -n 2 lmp -in in.lj.txt -var x 8 -var y 8 -var z 8 -k on g 2 -sf kk -pk kokkos cuda/aware on neigh full comm device binsize 2.8
 ```
