@@ -24,32 +24,39 @@ help([==[
 
 Description
 ===========
-PGI Community Edition Fortran, C and C++ compilers and tools are for scientists
-and engineers who develop high-performance computing (HPC) applications
-targeting multicore CPUs and NVIDIA Tesla GPUs. PGI Compilers & Tools enable
-development of performance-portable HPC applications with uniform source code
-across the most widely used parallel processors and systems, and include
-support for OpenACC, OpenMP and CUDA Fortran parallel programming.
+The NVIDIA HPC SDK is a comprehensive suite of compilers, libraries and tools
+essential to maximizing developer productivity and the performance and
+portability of HPC applications. The NVIDIA HPC SDK C, C++, and Fortran
+compilers support GPU acceleration of HPC modeling and simulation applications
+with standard C++ and Fortran, OpenACC directives, and CUDA. GPU-accelerated
+math libraries maximize performance on common HPC algorithms, and optimized
+communications libraries enable standards-based multi-GPU and scalable systems
+programming. Performance profiling and debugging tools simplify porting and
+optimization of HPC applications, and containerization tools enable easy
+deployment on-premises or in the cloud.
 
 More information
 ================
- - NGC: https://ngc.nvidia.com/catalog/containers/nvidia:pgi-compilers
+ - NGC: https://ngc.nvidia.com/catalog/containers/nvidia:nvhpc
 ]==])
 
-whatis("Name: PGI Compilers")
-whatis("Version: Community Edition")
-whatis("Description: PGI Community Edition Fortran, C and C++ compilers and tools are for scientists and engineers who develop high-performance computing (HPC) applications targeting multicore CPUs and NVIDIA Tesla GPUs. PGI Compilers & Tools enable development of performance-portable HPC applications with uniform source code across the most widely used parallel processors and systems, and include support for OpenACC, OpenMP and CUDA Fortran parallel programming.")
-whatis("URL: https://ngc.nvidia.com/catalog/containers/nvidia:pgi-compilers")
+whatis("Name: NVIDIA HPC SDK")
+whatis("Version: 20.7")
+whatis("The NVIDIA HPC SDK is a comprehensive suite of compilers, libraries and tools essential to maximizing developer productivity and the performance and portability of HPC applications. The NVIDIA HPC SDK C, C++, and Fortran compilers support GPU acceleration of HPC modeling and simulation applications with standard C++ and Fortran, OpenACC directives, and CUDA. GPU-accelerated math libraries maximize performance on common HPC algorithms, and optimized communications libraries enable standards-based multi-GPU and scalable systems programming. Performance profiling and debugging tools simplify porting and optimization of HPC applications, and containerization tools enable easy deployment on-premises or in the cloud.")
+whatis("URL: https://ngc.nvidia.com/catalog/containers/nvidia:nvhpc")
 
 if not (isloaded("Singularity")) then
     load("Singularity")
 end
 
-conflict(myModuleName(), "pgi")
+conflict(myModuleName(), "nvhpc")
 
-local image = "nvcr.io_hpc_pgi-compilers:ce.sif"
-local uri = "docker://nvcr.io/hpc/pgi-compilers:ce"
-local programs = {"pgcc", "pgc++", "pgfortran"}
+local image = "nvcr.io_nvidia_nvhpc:20.7-devel-centos7.sif"
+local uri = "docker://nvcr.io/nvidia/nvhpc:20.7-devel-centos7"
+local programs = {"nvc", "nvc++", "nvfortran", "nvcc",
+                  "pgcc", "pgc++", "pgfortran",
+                  "cuda-gdb", "ncu", "nv-nsight-cu-cli", "nvprof",
+                  "nsight-sys", "nsys"}
 local entrypoint_args = ""
 
 -- The absolute path to Singularity is needed so it can be invoked on remote
