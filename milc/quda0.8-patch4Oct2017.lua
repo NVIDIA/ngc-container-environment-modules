@@ -38,7 +38,7 @@ More information
 
 whatis("Name: milc")
 whatis("Version: quda0.8-patch4Oct2017")
-whatis("Description: MILC represents part of a set of codes written by the MIMD Lattice Computation (MILC) collaboration used to study quantum chromodynamics (QCD), the theory of the strong interactions of subatomic physics. It performs simulations of four dimensional SU(3) lattice gauge theory on MIMD parallel machines. "Strong interactions" are responsible for binding quarks into protons and neutrons and holding them all together in the atomic nucleus.")
+whatis("Description: MILC represents part of a set of codes written by the MIMD Lattice Computation (MILC) collaboration used to study quantum chromodynamics (QCD), the theory of the strong interactions of subatomic physics. It performs simulations of four dimensional SU(3) lattice gauge theory on MIMD parallel machines. \"Strong interactions\" are responsible for binding quarks into protons and neutrons and holding them all together in the atomic nucleus.")
 whatis("URL: https://ngc.nvidia.com/catalog/containers/hpc:milc")
 
 if not (isloaded("Singularity")) then
