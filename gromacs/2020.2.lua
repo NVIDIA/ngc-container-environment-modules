@@ -40,8 +40,11 @@ whatis("Version: 2020.2")
 whatis("Description: GROMACS is a molecular dynamics application designed to simulate Newtonian equations of motion for systems with hundreds to millions of particles. GROMACS is designed to simulate biochemical molecules like proteins, lipids, and nucleic acids that have a lot of complicated bonded interactions. More info on GROMACS can be found at http://www.gromacs.org/")
 whatis("URL: https://ngc.nvidia.com/catalog/containers/hpc:gromacs")
 
-if not (isloaded("Singularity")) then
-    load("Singularity")
+if not (os.getenv("NGC_SINGULARITY_MODULE") == "none") then
+	local singularity_module = os.getenv("NGC_SINGULARITY_MODULE") or "Singularity"
+	if not (isloaded(singularity_module)) then
+		load(singularity_module)
+	end
 end
 
 conflict(myModuleName())

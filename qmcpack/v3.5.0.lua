@@ -45,8 +45,11 @@ whatis("Version: 3.5.0")
 whatis("Description: QMCPACK is an open-source, high-performance electronic structure code that implements numerous Quantum Monte Carlo algorithms. Its main applications are electronic structure calculations of molecular, periodic 2D and periodic 3D solid-state systems. Variational Monte Carlo (VMC), diffusion Monte Carlo (DMC) and a number of other advanced QMC algorithms are implemented. By directly solving the Schrodinger equation, QMC methods offer greater accuracy than methods such as density functional theory, but at a trade-off of much greater computational expense. Distinct from many other correlated many-body methods, QMC methods are readily applicable to both bulk (periodic) and isolated molecular systems.")
 whatis("URL: https://ngc.nvidia.com/catalog/containers/hpc:qmcpack")
 
-if not (isloaded("Singularity")) then
-    load("Singularity")
+if not (os.getenv("NGC_SINGULARITY_MODULE") == "none") then
+	local singularity_module = os.getenv("NGC_SINGULARITY_MODULE") or "Singularity"
+	if not (isloaded(singularity_module)) then
+		load(singularity_module)
+	end
 end
 
 conflict(myModuleName(), "openmpi", "chroma", "lammps", "milc", "relion")

@@ -41,8 +41,11 @@ whatis("Version: 20.03-tf2-py3")
 whatis("Description: TensorFlow is an open-source software library for numerical computation using data flow graphs. Nodes in the graph represent mathematical operations, while the graph edges represent the multidimensional data arrays (tensors) that flow between them. This flexible architecture lets you deploy computation to one or more CPUs or GPUs in a desktop, server, or mobile device without rewriting code.")
 whatis("URL: https://ngc.nvidia.com/catalog/containers/nvidia:tensorflow")
 
-if not (isloaded("Singularity")) then
-    load("Singularity")
+if not (os.getenv("NGC_SINGULARITY_MODULE") == "none") then
+	local singularity_module = os.getenv("NGC_SINGULARITY_MODULE") or "Singularity"
+	if not (isloaded(singularity_module)) then
+		load(singularity_module)
+	end
 end
 
 conflict(myModuleName(), "rapidsai", "pytorch")

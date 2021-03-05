@@ -46,8 +46,9 @@ Some of the expected changes are:
 
 1. The name of the Singularity module. The container environment
    modules try to load the `Singularity` module (note the capital
-   'S'). Modify this if the local Singularity module is named
-   differently.
+   'S'). Set the `NGC_SINGULARITY_MODULE` environment variable if the
+   local Singularity module is named differently (set it to `none` if
+   no Singularity module is required).
 
 2. Module conflicts. The container environment modules set module
    conflicts based on the commands mapped into the container. Sites

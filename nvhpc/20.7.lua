@@ -45,8 +45,11 @@ whatis("Version: 20.7")
 whatis("The NVIDIA HPC SDK is a comprehensive suite of compilers, libraries and tools essential to maximizing developer productivity and the performance and portability of HPC applications. The NVIDIA HPC SDK C, C++, and Fortran compilers support GPU acceleration of HPC modeling and simulation applications with standard C++ and Fortran, OpenACC directives, and CUDA. GPU-accelerated math libraries maximize performance on common HPC algorithms, and optimized communications libraries enable standards-based multi-GPU and scalable systems programming. Performance profiling and debugging tools simplify porting and optimization of HPC applications, and containerization tools enable easy deployment on-premises or in the cloud.")
 whatis("URL: https://ngc.nvidia.com/catalog/containers/nvidia:nvhpc")
 
-if not (isloaded("Singularity")) then
-    load("Singularity")
+if not (os.getenv("NGC_SINGULARITY_MODULE") == "none") then
+	local singularity_module = os.getenv("NGC_SINGULARITY_MODULE") or "Singularity"
+	if not (isloaded(singularity_module)) then
+		load(singularity_module)
+	end
 end
 
 conflict(myModuleName(), "nvhpc")

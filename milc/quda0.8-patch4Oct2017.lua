@@ -41,8 +41,11 @@ whatis("Version: quda0.8-patch4Oct2017")
 whatis("Description: MILC represents part of a set of codes written by the MIMD Lattice Computation (MILC) collaboration used to study quantum chromodynamics (QCD), the theory of the strong interactions of subatomic physics. It performs simulations of four dimensional SU(3) lattice gauge theory on MIMD parallel machines. \"Strong interactions\" are responsible for binding quarks into protons and neutrons and holding them all together in the atomic nucleus.")
 whatis("URL: https://ngc.nvidia.com/catalog/containers/hpc:milc")
 
-if not (isloaded("Singularity")) then
-    load("Singularity")
+if not (os.getenv("NGC_SINGULARITY_MODULE") == "none") then
+	local singularity_module = os.getenv("NGC_SINGULARITY_MODULE") or "Singularity"
+	if not (isloaded(singularity_module)) then
+		load(singularity_module)
+	end
 end
 
 conflict(myModuleName(), "openmpi", "chroma", "lammps", "qmcpack", "relion")
