@@ -80,7 +80,7 @@ append_path("SINGULARITY_BINDPATH", scratch   .. ":/scratch",   ",")
 -- Note: the way GAMESS is setup in this container, we really need a
 -- "local" workspace/scratch (will only keep one file) and a true /scratch
 -- scratch - so make them both.
-directories = {workspace, results, pathJoin(workspace, scratch), scratch, restart}
+directories = {workspace, results, pathJoin(workspace, "scratch"), scratch, restart}
 preexec_command = "mkdir -p"
 for i,dir in pairs(directories) do
 	preexec_command = preexec_command .. " " .. dir
