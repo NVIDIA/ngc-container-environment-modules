@@ -62,6 +62,7 @@ local entrypoint_args = "--gpu_default_driver=0.0"
 
 -- Workaround for lack of SLURM awareness in the container --
 pushenv("SLURM_JOBID", false)
+pushenv("SLURM_NODELIST", false)
 
 -- The absolute path to Singularity is needed so it can be invoked on remote
 -- nodes without the corresponding module necessarily being loaded.
