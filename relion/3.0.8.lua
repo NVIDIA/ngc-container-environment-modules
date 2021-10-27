@@ -51,7 +51,7 @@ conflict(myModuleName(), "openmpi", "chroma", "lammps", "milc", "relion")
 
 local image = "nvcr.io_hpc_relion:3.0.8.sif"
 local uri = "docker://nvcr.io/hpc/relion:3.0.8"
-local programs = {"mpirun", "relion", "relion_refine_mpi"}
+local programs = {"mpirun", "relion_refine_mpi"}
 local entrypoint_args = ""
 
 -- The absolute path to Singularity is needed so it can be invoked on remote
