@@ -82,6 +82,6 @@ local container_launch = singularity .. " run --nv -B $HOME/.julia:/data " .. im
 -- Programs to setup in the shell
 -- julia is the container entrypoint
 for i,program in pairs(programs) do
-        set_shell_function(program, container_launch .. " $@",
+        set_shell_function(program, container_launch .. " \"$@\"",
 	                            container_launch .. " $*")
 end

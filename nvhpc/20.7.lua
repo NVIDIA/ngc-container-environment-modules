@@ -90,6 +90,6 @@ local container_launch = singularity .. " run --nv " .. image .. " " .. entrypoi
 
 -- Programs to setup in the shell
 for i,program in pairs(programs) do
-        set_shell_function(program, container_launch .. " " .. program .. " $@",
+        set_shell_function(program, container_launch .. " " .. program .. " \"$@\"",
 	                            container_launch .. " " .. program .. " $*")
 end
